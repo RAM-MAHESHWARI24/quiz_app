@@ -1,4 +1,4 @@
-# quiz_app
+# QuizPro
 
 A new Flutter project.
 
