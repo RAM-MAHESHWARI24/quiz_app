@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+//import 'package:flutter/widgets.dart';
+import 'package:quiz_app/question_screen.dart';
 import 'package:quiz_app/start_screen.dart';
 
 class Quiz extends StatefulWidget {
@@ -10,6 +12,27 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  // Like this we can change state or
+  // Widget? activeScreen;
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   activeScreen = StartScreen(switchScreen);
+  // }
+  // // Passing switchScreen pointer to StartScreen Class
+
+  //void switchScreen() {
+  //   setState(() {
+  //     activeScreen = const QuestionScreen();
+  //   });
+  // }
+  var activeScreen = 'StartScreen';
+  void switchScreen() {
+    setState(() {
+      activeScreen = 'QuestionScreen';
+    });
+  }
+
   @override
   Widget build(context) {
     return MaterialApp(
@@ -25,7 +48,10 @@ class _QuizState extends State<Quiz> {
               Color.fromARGB(255, 49, 12, 150)
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
           ),
-          child: const StartScreen(),
+          // child: activeScreen,
+          child: activeScreen == 'StartScreen'
+              ? StartScreen(switchScreen)
+              : const QuestionScreen(),
         ),
       ),
     );
