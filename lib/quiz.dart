@@ -39,7 +39,15 @@ class _QuizState extends State<Quiz> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepPurpleAccent,
-          title: const Text('QUIZ APP'),
+          title: const Center(
+            child: Text(
+              'QuizPro',
+              style: TextStyle(
+                fontSize: 30,
+                color: Colors.white,
+              ),
+            ),
+          ),
         ),
         body: Container(
           decoration: const BoxDecoration(
@@ -50,8 +58,11 @@ class _QuizState extends State<Quiz> {
           ),
           // child: activeScreen,
           child: activeScreen == 'StartScreen'
-              ? StartScreen(switchScreen)
-              : const QuestionScreen(),
+              ? StartScreen(
+                  switchScreen) // this function is recieved by strt_screen.dart
+              : const QuestionScreen(), //which is Func for StartQuiz Button pressed
+          // which changes the variable in this file
+          //and chenges screen to quiz screen
         ),
       ),
     );

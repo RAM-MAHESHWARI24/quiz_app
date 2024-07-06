@@ -1,5 +1,8 @@
 import 'package:quiz_app/model/quiz_question.dart';
+// making this List using construtor function defined in
+//quiz_question.dart to fill this List keeping first for answer[0] as true/correct
 
+// List<QuizQuestion> questions = [
 const questions = [
   QuizQuestion(
     'What are the main building blocks of Flutter UIs?',
