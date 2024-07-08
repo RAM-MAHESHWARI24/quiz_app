@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/model/answer_button.dart';
 import 'package:quiz_app/model/quiz_question.dart';
+import 'package:quiz_app/quiz.dart';
 import 'package:quiz_app/data/questions.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuestionScreen extends StatefulWidget {
-  const QuestionScreen({super.key});
+  const QuestionScreen(this.onSelectAnswer, {super.key});
+  final void Function(String) onSelectAnswer;
   @override
   State<QuestionScreen> createState() {
     return _QuestionScreenState();
@@ -14,7 +16,8 @@ class QuestionScreen extends StatefulWidget {
 
 class _QuestionScreenState extends State<QuestionScreen> {
   int curQuestionidx = 0;
-  void nextQuestion() {
+  void nextQuestion(String item) {
+    widget.onSelectAnswer(item);
     setState(() {
       curQuestionidx++;
     });
@@ -46,6 +49,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
             ),
             // ...dots converts Iterable<Widget> into List<Widget>
             //[1,2,3,4,5,6] to 1,2,3,4,5,6
+
             //map takes all elemets in answer ie List<String> in this case
             // then pass item to a functionwe define and then we can return what
             //we want in this case Widget that is ElevatedButton which is inside
@@ -55,7 +59,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
               // we copied the list and shuffled it and are returning it using
               // a method called shuffleOptions() which is memeber of QuizQuestion
               //AnswerButton is child of QuizQuestion
-              return AnswerButton(item, nextQuestion);
+              return AnswerButton(item, () {
+                nextQuestion(item);
+              });
               // just name of function acts as a pointer to function
               // in this case this pointer is passed to AnswerButton's
               //constructor and there it binds to onTap variable
